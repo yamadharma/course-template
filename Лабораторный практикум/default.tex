@@ -1,0 +1,64 @@
+\input preamble
+
+\def\bookauthor{Д.\,С.~Кулябов, М.\,Н.~Геворкян, А.\,В.~Королькова, А.\,В.~Демидова}
+\def\bookauthorrev{Кулябов~Д.\,С., Геворкян~М.\,Н., Королькова~А.\,В., 
+Демидова~А.\,В.}
+
+\def\booktitle{Операционные системы}
+
+\def\bookyear{2016}
+
+\def\authorheadings{\emph{Кулябов~Д.\,С. и др.}}
+\def\titleheadings{\booktitle}
+
+\renewcommand{\bibname}{Используемая литература}
+%\renewcommand{\refnamerec}{Рекомендуемая литература}
+%\renewcommand{\glossaryname}{Глоссарий}
+%\deftranslation{Glossary}{Глоссарий}
+% \def\glossarytoctitle{Глоссарий}
+\renewcommand{\listfigurename}{Список иллюстраций}
+\renewcommand{\listtablename}{Список таблиц}
+%\renewcommand{\indexname}{Предметный указатель}
+
+\def\chaptertitlename{Лабораторная работа №}
+%  
+
+\renewcommand{\chaptername}{Лабораторная работа}
+
+\bibliography{bib/cite}
+\addbibresource{bib/cite.bib}
+
+\begin{document}
+
+\input{title}
+\setcounter{page}{3}
+\shorttableofcontents{Краткое содержание}{0}
+\tableofcontents
+
+\input{text}
+
+\clearpage
+\paperid{auxiliary}
+
+\input{title/shmutz-title02}
+
+\def\courseid{np}
+%\input{text/umk/config/common}
+%\input{text/umk/program}
+%\input{text/umk/tests}
+%\input{text/umk/calplan}
+%\input{text/umk/brs}
+
+\input{text/misc/about-authors}
+
+\label{MyLastPage}
+\input{title/backpage}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% coding: utf-8-unix
+%%% End:
+

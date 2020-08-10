@@ -1,0 +1,3 @@
+- Сайт библиотеки РУДН <http://lib.rudn.ru/>.
+- Сайт ТУИС <http://esystem.pfur.ru/>.
+- Электронная библиотека РГБ <http://www.rsl.ru/>.

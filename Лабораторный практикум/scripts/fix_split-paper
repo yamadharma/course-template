@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Удаляем первую строку из split-paper.tex
+
+sed -i -e "1d" split-paper.tex

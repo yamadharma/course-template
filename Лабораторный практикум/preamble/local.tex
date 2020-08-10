@@ -1,0 +1,37 @@
+%% Локальные определения
+
+\usepackage{supertabular}
+\usepackage{array}
+
+\newcommand{\code}[1]{\Verb|#1|}
+
+\usepackage[os=win]{menukeys}
+
+\usepackage{rotating}
+\usepackage{rotfloat}
+%\usepackage{lscape}
+\usepackage{pdflscape}
+
+\sloppy
+
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+\usepackage{shorttoc}
+
+\ExecuteBibliographyOptions{%
+%maxnames=10,%
+%maxcitenames=10,%
+%maxbibnames=10,%
+%movenames=true,%
+url=false,%
+isbn=false,%
+%sorting=ynt,%
+refsection=chapter,%
+}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% coding: utf-8-unix
+%%% End: 

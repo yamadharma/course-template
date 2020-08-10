@@ -1,0 +1,25 @@
+#!/bin/bash
+
+TEMPLATE_DOCX="--reference-doc=template/reference.docx"
+FILTERS="-F pandoc-include -F pandoc-mustache -F pantable --lua-filter=filters/pagebreak.lua"
+
+COURSEID_LIST=`cat COURSEID`
+#COURSEID_LIST="nfi"
+#DOCS="brs method_stud biblist competence_list programme annotation fos material-support fos-passport brs-criteria lection infores infosrc homework contents quiz exam exercises selftest selfwork"
+DOCS=`ls -1 *.md | cut -f1 -d'.'`
+
+
+for course in ${COURSEID_LIST}
+do
+    for doc in ${DOCS}
+    do
+	cp ${doc}.md ${course}_${doc}.md
+	sed -i -e "s:@COURSE@:${course}:g" ${course}_${doc}.md
+	echo ${course}_${doc}
+	pandoc ${course}_${doc}.md ${FILTERS} ${TEMPLATE_DOCX} -o ${course}_${doc}.docx
+	# make FILE=${course}_${doc} $@
+	# rm ${course}_${doc}.md
+    done
+done
+
+

@@ -1,0 +1,75 @@
+#!/bin/bash
+
+COURSEID_LIST=`cat COURSEID`
+
+DISCIPLINE="$(cat ./config/common.yaml | grep discipline: | cut -d":" -f2 | xargs echo -n)"
+
+declare -A COURSE
+
+COURSE[npm]="01.03.02"
+COURSE[nkn]="02.03.01"
+COURSE[nfi]="02.03.02"
+COURSE[npi]="09.03.03"
+COURSE[nbi]="38.03.05"
+
+rm -rf out
+mkdir -p out
+
+CURDIR=`pwd`
+
+for courseid in ${COURSEID_LIST}
+do
+    mkdir -p "${CURDIR}"/out/${COURSE[${courseid}]}/{УМК,"Информация о курсе"}
+    ## Информация о курсе
+    # Аннотация
+    cp "${CURDIR}"/${courseid}_annotation.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"02. Аннотация дисциплины ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # Программа
+    cp "${CURDIR}"/${courseid}_programme.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"03. Рабочая программа дисциплины ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    cd "${CURDIR}"/out/${COURSE[${courseid}]}/УМК
+    ln -s ../"Информация о курсе"/"03. Рабочая программа дисциплины ${DISCIPLINE} ${COURSE[${courseid}]}".docx "1.1. Рабочая программа дисциплины ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # Перечень компетенций
+    cp "${CURDIR}"/${courseid}_competence_list.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"04. Перечень компетенций ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # БРС
+    cp "${CURDIR}"/${courseid}_brs.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"05. Описание бально-рейтинговой системы ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    cd "${CURDIR}"/out/${COURSE[${courseid}]}/УМК
+    ln -s ../"Информация о курсе"/"05. Описание бально-рейтинговой системы ${DISCIPLINE} ${COURSE[${courseid}]}".docx "3.1. Описание бально-рейтинговой системы ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # ФОС
+    cp "${CURDIR}"/${courseid}_fos.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"06. ФОС ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # Перечень литературы
+    cp "${CURDIR}"/${courseid}_biblist.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"07. Перечень основной и дополнительной учебной литературы".docx
+    cd "${CURDIR}"/out/${COURSE[${courseid}]}/УМК
+    ln -s ../"Информация о курсе"/"07. Перечень основной и дополнительной учебной литературы".docx "1.3. Перечень основной и дополнительной учебной литературы".docx
+    # Методические указания студенту
+    cp "${CURDIR}"/${courseid}_method_stud.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"Информация о курсе"/"08. Методические указания студенту".docx
+    cd "${CURDIR}"/out/${COURSE[${courseid}]}/УМК
+    ln -s ../"Информация о курсе"/"08. Методические указания студенту".docx "2.4. Методические указания студенту".docx
+    ## УМК
+    # Содержание дисциплины
+    cp "${CURDIR}"/${courseid}_contents.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"1.2. Содержание дисциплины".docx
+    # Описание материально-технической базы
+    cp "${CURDIR}"/${courseid}_material-support.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"1.4. Описание материально-технической базы".docx
+    # Конспект лекций
+    cp "${CURDIR}"/${courseid}_lection.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"1.6. Конспект лекций".docx
+    # Перечень информационных технологи
+    cp "${CURDIR}"/${courseid}_infores.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"1.7. Перечень информационных технологи".docx
+    # Перечень домашних заданий по темам
+    cp "${CURDIR}"/${courseid}_homework.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"2.1. Перечень домашних заданий по темам".docx
+    # Перечень информационных источников
+    cp "${CURDIR}"/${courseid}_infosrc.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"2.3. Перечень информационных источников".docx
+    # Сборник задач и упражнений
+    cp "${CURDIR}"/${courseid}_exercises.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"2.6. Сборник задач и упражнений".docx
+    # Вопросы для самопроверки и обсуждений по тема
+    cp "${CURDIR}"/${courseid}_selftest.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"2.7. Вопросы для самопроверки и обсуждений по тема".docx
+    # Задания для самостоятельной работы по темам
+    cp "${CURDIR}"/${courseid}_selfwork.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"2.8. Задания для самостоятельной работы по темам".docx
+    # Паспорт фонда оценочных средств
+    cp "${CURDIR}"/${courseid}_fos-passport.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"3.3. Паспорт фонда оценочных средств ${DISCIPLINE} ${COURSE[${courseid}]}".docx
+    # Тесты без ответов
+    cp "${CURDIR}"/${courseid}_quiz.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"3.4. Тесты без ответов".docx
+    # Перечень вопросов итоговой аттестации по курсу
+    cp "${CURDIR}"/${courseid}_exam.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"3.5. Перечень вопросов итоговой аттестации по курсу ${DISCIPLINE}".docx
+    # Описание показателей, критериев и шкалы оценивания компетенций
+    cp "${CURDIR}"/${courseid}_brs-criteria.docx "${CURDIR}"/out/${COURSE[${courseid}]}/"УМК"/"3.6. Описание показателей, критериев и шкалы оценивания компетенций".docx
+done
+
+cd "${CURDIR}"

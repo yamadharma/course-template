@@ -1,0 +1,32 @@
+#!/bin/bash
+
+rm -rf split-paper.d
+mkdir split-paper.d
+
+echo "#!/bin/bash" > run_split-paper
+
+# Делаем промежуточный файл
+# формат: paperid page-begin page-end
+
+awk '\
+BEGIN{ORS=""; numpage_fix=0; } \
+NR == 1 {print $1, $2 + numpage_fix " ";} \
+NR != 1 {print $2 - 1  + numpage_fix ; print "\n"; print $1, $2  + numpage_fix " ";} \
+END{print "end", "\n"} \
+' split-paper.tex > split-paper
+
+# Нумеруем строки
+nl -n rz -w 3 split-paper > split-paper.nl
+mv split-paper.nl split-paper
+
+awk '{print "pdftk default.pdf cat", $3 "-" $4, "output", "split-paper.d/" $1 "-" $2 ".pdf" >> "run_split-paper"}' split-paper
+chmod +x run_split-paper
+
+./run_split-paper
+
+rm run_split-paper
+rm split-paper
+
+
+
+
