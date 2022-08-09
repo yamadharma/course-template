@@ -1,4 +1,4 @@
-# Course tempalte
+# Course template
 
 ## Repository download
 
