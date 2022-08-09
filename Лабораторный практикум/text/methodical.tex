@@ -1,0 +1,125 @@
+\chapter*{Методические замечания}
+\addcontentsline{toc}{chapter}{Методические замечания}
+
+При составлении лабораторной работы следует придерживаться
+определённой структуры. Здесь рассматриваются лабораторные работы,
+выполняемые на компьютере.
+
+\section{Основные положения}
+\label{sec:method:general}
+
+\begin{itemize}
+\item Рабочий каталог лабораторной работы должен иметь унифицированную
+  структуру (см. \ref{sec:method:work:lab}).
+\item Исходный код программ, отчёты по лабораторным работам и
+  т.д. размещаются в системе контроля версий git (см. Лабораторную
+  работу №~\ref{ch:git}).
+\item Выполнение лабораторной работы документируется в виде скринкаста.
+\item При проверке лабораторных работ следует использовать понятные
+  критерии оценки.
+\end{itemize}
+
+\section{Рабочее пространство для лабораторной работы}
+\label{sec:method:work:lab}
+
+При выполнении лабораторной работы следует придерживаться структуры рабочего пространства.
+
+\begin{itemize}
+\item Рабочее пространство по предмету располагается в следующей иерархии:
+
+\begin{minted}[]{bash}
+~/work/
+└── <учебный год>/
+    └── <название предмета>/
+        └── <код предмета>/
+\end{minted}
+
+Например, для 2021--2022 учебного года и предмета <<Операционные
+системы>> (код предмета \texttt{os-intro}) структура каталогов примет следующий вид:
+
+\begin{minted}[]{bash}
+~/work/study
+└── 2021-2022/
+    └── Операционные системы/
+        └── os-intro/
+\end{minted}
+
+\item Название проекта на хостинге git имеет вид:
+\begin{verbatim}
+study_<учебный год>_<код предмета>
+\end{verbatim}
+\item Например, для 2021--2022 учебного года и предмета «Операционные системы» (код предмета \texttt{os-intro}) название проекта примет следующий вид:
+\begin{verbatim}
+study_2021-2022_os-intro
+\end{verbatim}
+
+
+\item Каталог для лабораторных работ имеет вид \texttt{labs}.
+\item Каталоги для лабораторных работ имеют вид \texttt{lab<номер>}, например: \texttt{lab01}, \texttt{lab02} и т.д.
+\item Каталог для групповых проектов имеет вид \texttt{project-group}.
+\item Каталог для персональных проектов имеет вид \texttt{project-personal}.
+\item Если проектов несколько, то они нумеруются подобно лабораторным работам.
+\item Этапы проекта обозначаются как \texttt{stage<номер>}.
+\end{itemize}
+
+\section{Шаблон для рабочего пространства}
+\label{sec:method:template}
+
+\begin{itemize}
+\item Репозиторий: \url{https://github.com/yamadharma/course-directory-student-template}.
+\end{itemize}
+
+\subsection{Сознание репозитория курса на основе шаблона}
+\label{sec:orgf3f8c19}
+
+\begin{itemize}
+\item Репозиторий на основе шаблона можно создать либо вручную, через web-интерфейс, либо с помощью утилит \texttt{gh} (см. \href{../notes/20210804144000-github_утилиты_команднои_строки.org}{github: утилиты командной строки}).
+\item Создание с помощью утилит.
+\item Создание выглядит следующим образом:
+\begin{minted}[]{shell}
+gh repo create <new-repo-name> --template="<owner/template-repo>"
+\end{minted}
+\item Например, для 2021--2022 учебного года и предмета «Операционные системы» (код предмета \texttt{os-intro}) создание репозитория примет следующий вид:
+\begin{minted}[]{shell}
+mkdir -p ~/work/study/2021-2022/"Операционные системы"
+cd ~/work/study/2021-2022/"Операционные системы"
+gh repo create study_2021-2022_os-intro --template=yamadharma/course-directory-student-template --public
+git clone --recursive git@github.com:<owner>/study_2021-2022_os-intro.git os-intro
+\end{minted}
+\end{itemize}
+
+\subsection{Настройка каталога курса}
+\label{sec:org8b36581}
+
+\begin{itemize}
+\item Перейдите в каталог курса:
+\begin{minted}[]{shell}
+cd ~/work/study/2021-2022/"Операционные системы"/os-intro
+\end{minted}
+
+\item Удалите лишние файлы:
+\begin{minted}[]{shell}
+rm package.json
+\end{minted}
+
+\item Создайте необходимые каталоги:
+\begin{minted}[]{shell}
+make COURSE=os-intro
+\end{minted}
+
+\item Отправьте файлы на сервер:
+\begin{minted}[]{shell}
+git add .
+git commit -am 'feat(main): make course structure'
+git push
+\end{minted}
+\end{itemize}
+
+
+\printbibliography[heading=subbibliography,resetnumbers=true]
+
+%%% Local Variables:
+%%% mode: latex
+%%% coding: utf-8-unix
+%%% End:
+
