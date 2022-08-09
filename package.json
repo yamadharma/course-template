@@ -1,0 +1,14 @@
+{
+    "name": "course-template",
+    "version": "1.0.0",
+    "description": "Template for academic course",
+    "main": "index.js",
+    "repository": "git@github.com:yamadharma/course-template.git",
+    "author": "Dmitry S. Kulyabov <yamadharma@gmail.com>",
+    "license": "CC-BY-4.0",
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    }
+}
